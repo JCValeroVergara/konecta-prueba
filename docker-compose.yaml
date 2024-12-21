@@ -1,0 +1,71 @@
+# version: '3.9'
+
+services:
+
+  db:
+    image: postgres:15.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      TZ: "Etc/UTC"
+    container_name: konecta-db
+
+    env_file:
+      - .env
+
+    networks:
+      - konecta-network
+
+    volumes:
+      - ./server/postgres:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      TZ: "Etc/UTC"
+    container_name: konecta-server
+
+    env_file:
+      - .env
+
+    networks:
+      - konecta-network
+
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    container_name: konecta-client
+
+    env_file:
+      - .env
+
+    networks:
+      - konecta-network
+
+    depends_on:
+      - server
+
+networks:
+  konecta-network:
+    driver: bridge
