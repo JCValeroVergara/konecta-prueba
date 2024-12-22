@@ -6,15 +6,33 @@ const { pool } = require('../src/db/db');
 describe('Empleados routes', () => {
     
     let createdEmpleado;
+    let token;
+
+    beforeAll(async () => {
+        const logindata = {
+            EMAIL: process.env.TEST_EMAIL,
+            PASSWORD: process.env.TEST_PASSWORD
+        };
+        
+        const response = await request(app)
+            .post('/api/v1/auth')
+            .send(logindata);
+        
+        token = response.body.token;
+    });
 
     test('GET Empleados la ruta / Funciona bien al traer los Empleados', async () => {
-        const response = await request(app).get('/api/v1/empleados');
+        const response = await request(app)
+            .get('/api/v1/empleados')
+            .set('Authorization', `Bearer ${token}`);
         expect(response.status).toBe(200);
     });
 
     test('Get Empleados la ruta / empleados debe devolver un array de empleados', async () => {
-        const response = await request(app).get('/api/v1/empleados');
-        expect(response.body).toBeInstanceOf(Array);
+        const response = await request(app)
+            .get('/api/v1/empleados')
+            .set('Authorization', `Bearer ${token}`);
+        expect(response.body.empleados).toBeInstanceOf(Array);
     });
 
     test('POST Empleados la ruta / empleados debe crear un nuevo empleado', async () => {
@@ -25,6 +43,7 @@ describe('Empleados routes', () => {
         };
         const response = await request(app)
             .post('/api/v1/empleados')
+            .set('Authorization', `Bearer ${token}`)
             .send(newEmpleado);
         
         expect(response.status).toBe(201);
@@ -37,7 +56,9 @@ describe('Empleados routes', () => {
     });
 
     test('GET Empleados la ruta / empleados/:id debe devolver un empleado por ID', async () => {
-        const response = await request(app).get(`/api/v1/empleados/${createdEmpleado}`);
+        const response = await request(app)
+            .get(`/api/v1/empleados/${createdEmpleado}`)
+            .set('Authorization', `Bearer ${token}`);
 
         expect(response.status).toBe(200);
         expect(response.body.ID).toBe(createdEmpleado);
@@ -51,6 +72,7 @@ describe('Empleados routes', () => {
 
         const response = await request(app)
             .put(`/api/v1/empleados/${createdEmpleado}`)
+            .set('Authorization', `Bearer ${token}`)
             .send(updatedEmpleado);
         
         expect(response.status).toBe(200);
@@ -60,10 +82,14 @@ describe('Empleados routes', () => {
     });
 
     test('DELETE Empleados la ruta / empleados/:id debe eliminar un empleado por ID', async () => {
-        const response = await request(app).delete(`/api/v1/empleados/${createdEmpleado}`);
+        const response = await request(app)
+            .delete(`/api/v1/empleados/${createdEmpleado}`)
+            .set('Authorization', `Bearer ${token}`);
         expect(response.status).toBe(204);
 
-        const empleado = await request(app).get(`/api/v1/empleados/${createdEmpleado}`);
+        const empleado = await request(app)
+            .get(`/api/v1/empleados/${createdEmpleado}`)
+            .set('Authorization', `Bearer ${token}`);
         expect(empleado.status).toBe(404);
     });
 

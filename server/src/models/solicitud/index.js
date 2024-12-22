@@ -20,6 +20,14 @@ const SolicitudSchema = {
         type: DataTypes.STRING(50),
         allowNull: false
     },
+    ID_EMPLEADO: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'Empleados',
+            key: 'ID'
+        },
+        allowNull: false
+    },
 };
 
 class Solicitud extends Model {

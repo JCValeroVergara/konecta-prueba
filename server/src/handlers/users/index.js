@@ -7,7 +7,12 @@ const deleteOne = require('../../controllers/users/delete');
 
 const getAllUsers = async (req, res) => {
     try {
-        const users = await allUsers();
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 25;
+        const searchNombre = req.query.searchNombre || '';
+        const searchEmail = req.query.searchEmail || '';
+
+        const users = await allUsers( page, pageSize, searchNombre, searchEmail );
         res.status(200).json(users);
     } catch (error) {
         res.status(404).json({ message: error.message });

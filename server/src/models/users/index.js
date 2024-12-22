@@ -25,7 +25,7 @@ const UsersSchema = {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isIn: [['admin', 'user']]
+            isIn: [['Empleado', 'Administrador']]
         }
     }
 };

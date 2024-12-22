@@ -14,6 +14,11 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Passport
+const passport = require('./helpers/auth/index');
+app.use(passport.initialize());
 
 
 // Routes
