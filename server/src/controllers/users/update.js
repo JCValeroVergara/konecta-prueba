@@ -5,7 +5,7 @@ const update = async (id, data) => {
     const user = await models.Users.findByPk(id);
 
     if (!user) {
-        throw new Error('User not found');
+        throw new Error('User no encontrado');
     }
     const { NOMBRE, EMAIL, PASSWORD, ROL } = data;
 

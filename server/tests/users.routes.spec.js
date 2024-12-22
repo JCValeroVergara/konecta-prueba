@@ -2,7 +2,6 @@ require('dotenv').config();
 const request = require('supertest');
 const { app, server } = require('../src/index');
 const { pool } = require('../src/db/db');
-const e = require('express');
 
 describe('Users routes', () => {
 
