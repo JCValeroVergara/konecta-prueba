@@ -14,6 +14,12 @@ function setupModels(sequelize) {
     models.Empleados.hasMany(models.Solicitud, { foreignKey: 'ID_EMPLEADO', as: 'Solicitudes' });
     models.Solicitud.belongsTo(models.Empleados, { foreignKey: 'ID_EMPLEADO', as: 'Empleado' });
 
+    Object.keys(models).forEach((modelName) => {
+        if ('associate' in models[modelName]) {
+            models[modelName].associate(models);
+        }
+    });
+
     return models;
 }
 

@@ -6,7 +6,12 @@ const deleteOne = require('../../controllers/solicitud/delete');
 
 const getAllSolicitudes = async (req, res) => {
     try {
-        const solicitudes = await allSolicitudes();
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 25;
+        const searcCodigo = req.query.searchCodigo || '';
+        const empleado = req.query.empleado;
+
+        const solicitudes = await allSolicitudes( page, pageSize, searcCodigo, empleado );
         res.status(200).json(solicitudes);
     } catch (error) {
         res.status(404).json({ message: error.message });

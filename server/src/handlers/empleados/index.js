@@ -6,7 +6,12 @@ const deleteOne = require('./../../controllers/empleados/delete');
 
 const getAllEmpleados = async (req, res) => {
     try {
-        const empleados = await allEmpleados();
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 25;
+        const searchNombre = req.query.searchNombre || '';
+        const searchFechaIngreso = req.query.searchFechaIngreso || '';
+        const searchSalario = req.query.searchSalario || '';
+        const empleados = await allEmpleados( page, pageSize, searchNombre, searchFechaIngreso, searchSalario );
         res.status(200).json(empleados);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -18,12 +23,13 @@ const getEmpleadoById = async (req, res) => {
         const empleado = await getById(req.params.id);
 
         if (!empleado) {
-            res.status(404).json({ message: 'Empleado not found' });
+            res.status(404).json({ message: 'Empleado no encontrado' });
         } else {
             res.status(200).json(empleado);
         }
     } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 }
 

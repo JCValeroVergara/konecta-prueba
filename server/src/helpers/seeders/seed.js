@@ -7,13 +7,13 @@ const usersData = [
         NOMBRE: 'Juan Carlos',
         EMAIL: 'juan@example.com',
         PASSWORD: 'password123',
-        ROL: 'admin'
+        ROL: 'Administrador'
     },
     {
         NOMBRE: 'Maria Perez',
         EMAIL: 'maria@example.com',
         PASSWORD: 'password456',
-        ROL: 'user'
+        ROL: 'Empleado'
     }
 ];
 
