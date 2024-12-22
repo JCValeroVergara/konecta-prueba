@@ -5,7 +5,7 @@ const create = async ({ NOMBRE, EMAIL, PASSWORD, ROL }) => {
     const user = await models.Users.findOne({ where: { EMAIL } });
 
     if (user) {
-        throw new Error('User already exists');
+        throw new Error('User ya existe');
     }
 
     const hash = await bcrypt.hash(PASSWORD, 10);

@@ -8,8 +8,10 @@
     "start": "node src/index.js",
     "seed": "node src/helpers/seeders/seed.js",
     "test": "npx jest tests",
-    "test:users": "npx jest tests/users --detectOpenHandles"
-  },
+    "test:users": "npx jest tests/users --detectOpenHandles",
+    "test:empleados": "npx jest tests/empleados --detectOpenHandles",
+    "test:solicitud": "npx jest tests/solicitud --detectOpenHandles"
+},
   "author": "Juan Valero",
   "license": "ISC",
   "dependencies": {

@@ -5,9 +5,9 @@ const deleteOne = async (id) => {
 
     if (user) {
         await user.destroy();
-        return 'User deleted successfully';
+        return 'User eliminado correctamente';
     } else {
-        throw new Error('User not found');
+        throw new Error('User no encontrado');
     }
 }
 
