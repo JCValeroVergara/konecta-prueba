@@ -3,8 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-const connectDB = require('./db/db');
-const { syncModels } = require('./db/sequelize');
+const { connectDB } = require('./db/db');
+// const { syncModels } = require('./db/sequelize');
+const routerApi = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -17,16 +18,18 @@ app.use(express.json());
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.send('Hello World from Konecta API');
 });
 
+// API routes
+routerApi(app);
 
 // Connect to database
 connectDB();
 
 const server = app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
-    await syncModels();
+    // await syncModels();
 });
 
 

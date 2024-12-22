@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "test": "npx jest tests"
+    "seed": "node src/helpers/seeders/seed.js",
+    "test": "npx jest tests",
+    "test:users": "npx jest tests/users --detectOpenHandles"
   },
   "author": "Juan Valero",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
@@ -25,6 +27,8 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2",
+    "supertest": "^7.0.0"
   }
 }
