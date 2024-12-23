@@ -13,7 +13,6 @@ const authenticate = (req, res, next) => {
             return res.status(401).json({ message: 'Token inválido' });
         }
 
-        // Establece la información del usuario en req.user
         req.user = {
             ID: decoded.sub,
             EMAIL: decoded.email,

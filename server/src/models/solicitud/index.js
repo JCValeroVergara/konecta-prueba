@@ -22,10 +22,6 @@ const SolicitudSchema = {
     },
     ID_EMPLEADO: {
         type: DataTypes.INTEGER,
-        references: {
-            model: 'Empleados',
-            key: 'ID'
-        },
         allowNull: false
     },
 };
