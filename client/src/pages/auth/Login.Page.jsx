@@ -1,7 +1,9 @@
+import { Login } from '../../layouts/auth/Login';
+
 export const LoginPage = () => {
     return (
-        <>
-            <h1>Soy LoginPage</h1>
-        </>
+        <div>
+            <Login />
+        </div>
     );
 };

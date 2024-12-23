@@ -1,1 +1,6 @@
 export * from './ui'
+export * from './icons'
+export * from './buttons'
+export * from './empleados'
+export * from './solicitudes'
+export * from './usuarios'
