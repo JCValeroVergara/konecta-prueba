@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { ActionsButton, ActualizarUsuario, CrearUsuario, ListaUsuarios } from '../../components';
+import { ActionsButton, CrearUsuario, ListaUsuarios } from '../../components';
 import { AuthContext } from '../../context';
 
 
@@ -10,7 +10,6 @@ export const UsuariosLayout = () => {
     const components = {
         lista: <ListaUsuarios />,
         crear: <CrearUsuario />,
-        actualizar: <ActualizarUsuario />,
     };
 
     const buttonsToShow = user?.ROL === 'Empleado' ? ['lista'] : Object.keys(components);

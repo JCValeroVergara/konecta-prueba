@@ -17,10 +17,11 @@ export const Login = () => {
         const data = await loginFetch(formState);
         
         if (data) {
-            login(data.tokenm, data.user);
+            login(data.token, data.user);
+            sessionStorage.setItem('token', data.token);
         }
 
-        // onResetForm();
+        onResetForm();
     }
 
 
