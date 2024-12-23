@@ -1,7 +1,9 @@
+import { SolicitudesLayout } from '../../layouts';
+
 export const SolicitudesPage = () => {
     return (
         <>
-            <h1>Soy SolicitudesPage</h1>
+            <SolicitudesLayout />
         </>
     );
 };
