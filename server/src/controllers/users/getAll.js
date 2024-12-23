@@ -9,6 +9,8 @@ const getAll = async (page, pageSize, searchNombre, searchEmail) => {
 
 
     const users = await models.Users.findAll({
+        attributes:{exclude:['PASSWORD']}, 
+
         where: whereClause,
         offset: (page - 1) * pageSize,
         limit: pageSize,
