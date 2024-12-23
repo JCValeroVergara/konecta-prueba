@@ -14,6 +14,7 @@ export const ListaUsuarios = () => {
     const [searchNombre, setSearchNombre] = useState('');
     const [activeForm, setActiveForm] = useState(null);
     const [UsuarioId, setUsuarioId] = useState(null);
+    const [usuario, setUsuario] = useState({});
     
     const limit = 10;
     const [searchParams, setSearchParams] = useState({});
@@ -23,9 +24,8 @@ export const ListaUsuarios = () => {
     if (loading) return <p>Cargando...</p>;
     if (error) return <div>Error: {error.message}</div>;
 
-    console.log(data);
     const usuarios = data.users || [];
-    const totalPages = data.usersCount / limit;
+    const totalPages = Math.ceil(data.empleadosCount / limit);
     
 
     const handlePageChange = (page) => {
@@ -46,8 +46,8 @@ export const ListaUsuarios = () => {
         setActiveForm('eliminar');
     }
 
-    const handleUpdate = (ID) => {
-        setUsuarioId(ID);
+    const handleUpdate = (usuario) => {
+        setUsuario(usuario);
         setActiveForm('actualizar');
     }
 
@@ -60,7 +60,7 @@ export const ListaUsuarios = () => {
     return (
         <>
             {activeForm === 'eliminar' && <EliminarUsuario ID={UsuarioId} onClose={handleClose} />}
-            {activeForm === 'actualizar' && <ActualizarUsuario ID={UsuarioId} onClose={handleClose} />}
+            {activeForm === 'actualizar' && <ActualizarUsuario usuario={usuario} onClose={handleClose} />}
             <div className='w-full flex flex-col justify-center'>
                 <div className='w-full h-20 flex justify-between'>
                     <div className='ml-4 flex items-center'>
@@ -108,7 +108,7 @@ export const ListaUsuarios = () => {
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{usuario.NOMBRE}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{usuario.EMAIL}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{usuario.ROL}</td>
-                                    { user?.ROL === 'Empleado' ? null : <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'><EliminarButton onClick={()=>handleDelete(usuario.ID)}/> <EditarButton onClick={()=>handleUpdate(usuario.ID)}/></td>}
+                                    { user?.ROL === 'Empleado' ? null : <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'><EliminarButton onClick={()=>handleDelete(usuario.ID)}/> <EditarButton onClick={()=>handleUpdate(usuario)}/></td>}
                                 </tr>
                             ))}
                             </tbody>

@@ -5,7 +5,7 @@ export const CerrarButton = ({onClick}) => {
         <button
             title="Cerrar"
             onClick={onClick}
-            className="p-2 border border-white rounded-md hover:bg-red-500 transition bg-slate-500 mx-3"
+            className="w-32 h-10 p-2 border text-white border-white rounded-md hover:bg-green-500 transition bg-slate-500 mx-3"
         >
             Cerrar
         </button>

@@ -25,7 +25,7 @@ export const CrearEmpleado = () => {
 
     return (
         <div className='w-1/2 mx-auto mt-10 flex flex-col items-center'>
-            <h1 className='text-5xl text-blue-700'>Login</h1>
+            <h1 className='text-5xl text-blue-700'>Crear Empleado</h1>
             <hr />
             <form className='w-1/2 flex flex-col mt-5' onSubmit={handleSubmit}>
                 <input

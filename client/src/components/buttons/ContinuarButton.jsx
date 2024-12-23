@@ -5,7 +5,7 @@ export const ContinuarButton = ({onClick}) => {
         <button
             title="Continuar"
             onClick={onClick}
-            className="p-2 border border-white rounded-md hover:bg-red-500 transition bg-slate-500 mx-3"
+            className="w-32 h-10 text-white p-2 border border-white rounded-md hover:bg-red-500 transition bg-slate-500 mx-3"
         >
             Continuar
         </button>

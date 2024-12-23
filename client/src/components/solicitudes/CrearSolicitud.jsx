@@ -39,7 +39,7 @@ export const CrearSolicitud = () => {
 
     return (
         <div className='w-1/2 mx-auto mt-10 flex flex-col items-center'>
-            <h1 className='text-5xl text-blue-700'>Login</h1>
+            <h1 className='text-5xl text-blue-700'>Crear Solicitud</h1>
             <hr />
             <form className='w-1/2 flex flex-col mt-5' onSubmit={handleSubmit}>
                 <input
@@ -86,7 +86,7 @@ export const CrearSolicitud = () => {
                     className='bg-blue-700 text-white rounded-md p-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed'
                     disabled={loading || !formState.CODIGO || !formState.DESCRIPCION || !formState.RESUMEN || !formState.ID_EMPLEADO}
                 >
-                    {loading ? 'Creando...' : 'Crear Usuario'}
+                    {loading ? 'Creando...' : 'Crear Solicitud'}
                 </button>
                 {error && <p>Error: {error}</p>}
                 {successMessage && <p>{successMessage}</p>}
