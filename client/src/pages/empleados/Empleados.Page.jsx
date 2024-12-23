@@ -7,3 +7,5 @@ export const EmpleadosPage = () => {
         </>
     );
 };
+
+export default EmpleadosPage;
