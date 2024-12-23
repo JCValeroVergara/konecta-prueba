@@ -14,6 +14,7 @@ export const ListaSolicitudes = () => {
     const [searchCodigo, setSearchCodigo] = useState('');
     const [activeForm, setActiveForm] = useState(null);
     const [SolicitudId, setSolicitudId] = useState(null);
+    const [solicitud, setSolicitud] = useState({});
     
     const limit = 10;
     const [searchParams, setSearchParams] = useState({});
@@ -23,9 +24,8 @@ export const ListaSolicitudes = () => {
     if (loading) return <p>Cargando...</p>;
     if (error) return <div>Error: {error.message}</div>;
 
-    console.log(data);
     const solicitudes = data.solicitudes || [];
-    const totalPages = data.solicitudesCount / limit;
+    const totalPages = Math.ceil(data.empleadosCount / limit);
     
 
     const handlePageChange = (page) => {
@@ -46,8 +46,8 @@ export const ListaSolicitudes = () => {
         setActiveForm('eliminar');
     }
 
-    const handleUpdate = (ID) => {
-        setSolicitudId(ID);
+    const handleUpdate = (solicitud) => {
+        setSolicitud(solicitud);
         setActiveForm('actualizar');
     }
 
@@ -59,7 +59,7 @@ export const ListaSolicitudes = () => {
     return (
         <>
             {activeForm === 'eliminar' && <EliminarSolicitud ID={SolicitudId} onClose={handleClose} />}
-            {activeForm === 'actualizar' && <ActualizarSolicitud ID={SolicitudId} onClose={handleClose} />}
+            {activeForm === 'actualizar' && <ActualizarSolicitud solicitud={solicitud} onClose={handleClose} />}
             <div className='w-full flex flex-col justify-center'>
                 <div className='w-full h-20 flex justify-between'>
                     <div className='ml-4 flex items-center'>
@@ -109,7 +109,7 @@ export const ListaSolicitudes = () => {
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{solicitud.DESCRIPCION}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{solicitud.RESUMEN}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{solicitud.Empleado.NOMBRE}</td>
-                                    { user?.ROL === 'Empleado' ? null : <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'><EliminarButton onClick={()=>handleDelete(solicitud.ID)}/> <EditarButton onClick={()=>handleUpdate(solicitud.ID)}/></td>}
+                                    { user?.ROL === 'Empleado' ? null : <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'><EliminarButton onClick={()=>handleDelete(solicitud.ID)}/> <EditarButton onClick={()=>handleUpdate(solicitud)}/></td>}
                                 </tr>
                             ))}
                             </tbody>

@@ -11,11 +11,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (token) {
-            sessionStorage.setItem('token', token); // Guardar token en sessionStorage
-            setLogged(true); // Actualiza el estado de logged si hay un token
+            sessionStorage.setItem('token', token);
+            setLogged(true); 
         } else {
-            sessionStorage.removeItem('token'); // Eliminar token si no está presente
-            setLogged(false); // Actualiza el estado de logged si no hay token
+            sessionStorage.removeItem('token'); 
+            setLogged(false); 
         }
     }, [token]);
 

@@ -5,3 +5,4 @@ export * from './EditarButton';
 export * from './EliminarButton';
 export * from './CerrarButton';
 export * from './ContinuarButton';
+export * from './SubmitButton';

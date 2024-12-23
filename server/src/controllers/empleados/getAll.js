@@ -12,9 +12,7 @@ const getAll = async (page, pageSize, searchNombre, searchFechaIngreso, searchSa
         offset: (page - 1) * pageSize,
         limit: pageSize,
         order: [
-            ['NOMBRE', 'ASC'],
-            ['FECHA_INGRESO', 'ASC'],
-            ['SALARIO', 'ASC']
+            ['NOMBRE', 'ASC']
         ]
     });
     const empleadosCount = await models.Empleados.count({where: whereClause});
