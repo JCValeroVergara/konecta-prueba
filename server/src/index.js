@@ -4,7 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const { connectDB } = require('./db/db');
-// const { syncModels } = require('./db/sequelize');
+const { syncModels } = require('./db/sequelize');
 const routerApi = require('./routes');
 
 const app = express();
@@ -34,7 +34,7 @@ connectDB();
 
 const server = app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
-    // await syncModels();
+    await syncModels();
 });
 
 

@@ -18,9 +18,12 @@ const models = setupModels(sequelize);
 const syncModels = async () => {
     try {
         await sequelize.authenticate();
-        await sequelize.sync({  alter: true });
+        await models.Users.sync({ alter: true });
+        await models.Empleados.sync({ alter: true });
+        await models.Solicitud.sync({ alter: true });
         console.log('Models synchronized with the database');
     } catch (error) {
+        console.error('Error synchronizing database', error.message);
         console.error('Error synchronizing database', error);
     }
 }
