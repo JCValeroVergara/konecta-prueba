@@ -11,11 +11,11 @@
     "test:users": "npx jest tests/users --detectOpenHandles",
     "test:empleados": "npx jest tests/empleados --detectOpenHandles",
     "test:solicitud": "npx jest tests/solicitud --detectOpenHandles"
-},
+  },
   "author": "Juan Valero",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",

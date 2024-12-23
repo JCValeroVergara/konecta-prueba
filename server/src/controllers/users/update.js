@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { models } = require('../../db/sequelize');
 
 const update = async (id, data) => { 

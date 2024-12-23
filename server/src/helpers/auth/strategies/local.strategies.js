@@ -1,5 +1,5 @@
 const { Strategy } = require('passport-local');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { models } = require('../../../db/sequelize');
 
 
