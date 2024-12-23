@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { ActionsButton, ActualizarSolicitud, CrearSolicitud, ListaSolicitudes } from '../../components';
+import { ActionsButton, CrearSolicitud, ListaSolicitudes } from '../../components';
 import { AuthContext } from '../../context';
 
 
@@ -10,7 +10,6 @@ export const SolicitudesLayout = () => {
     const components = {
         lista: <ListaSolicitudes />,
         crear: <CrearSolicitud />,
-        actualizar: <ActualizarSolicitud />,
     };
 
     const buttonsToShow = user?.ROL === 'Empleado' ? ['lista'] : Object.keys(components);

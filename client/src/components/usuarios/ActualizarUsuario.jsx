@@ -1,9 +1,22 @@
+import { CerrarButton, ContinuarButton } from '../buttons';
 
+export const ActualizarUsuario = ({ ID, onClose }) => {
+    const handleUpdate = () => {
+        // onClick();
+    };
 
-export const ActualizarUsuario = () => {
-  return (
-    <>
-      <h1>Soy ActualizarUsuario</h1>
-    </>
-  );
+    const handleClose = () => {
+        onClose();
+    };
+    return (
+        <>
+            <section className="overflow-y-scroll flex flex-wrap fixed top-0 left-0 z-50 w-full h-full items-center justify-center bg-black bg-opacity-50">
+                <h1>Soy ActualizarUsuario</h1>
+                <div className='w-full h-12 flex flex-row justify-center items-center'>
+                    <ContinuarButton onClick={handleUpdate} />
+                    <CerrarButton onClick={handleClose} />
+                </div>
+            </section>
+        </>
+    );
 };

@@ -1,19 +1,18 @@
 
 const API = import.meta.env.VITE_BACKEND_URL;
 
-export const loginFetch = async (user) => {
+export const allEmpleadosFetch = async (token, page = 0, pageSize =0) => {
     try {
-        const response = await fetch(`${API}/auth/`, {
-            method: 'POST',
+        const response = await fetch(`${API}/empleados/?page=${page}&pageSize=${pageSize}`, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(user),
         });
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             return data;
         } else {
             throw new Error('Error en la petición');
