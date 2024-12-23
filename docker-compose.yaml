@@ -1,4 +1,3 @@
-# version: '3.9'
 
 services:
 
@@ -23,48 +22,48 @@ services:
     volumes:
       - ./server/postgres:/var/lib/postgresql/data
 
-  # server:
-  #   build:
-  #     context: ./server
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "4000:4000"
-  #   environment:
-  #     DB_HOST: db
-  #     DB_PORT: 5432
-  #     DB_NAME: ${DB_NAME}
-  #     DB_USER: ${DB_USER}
-  #     DB_PASSWORD: ${DB_PASSWORD}
-  #     TZ: "Etc/UTC"
-  #   container_name: konecta-server
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      TZ: "Etc/UTC"
+    container_name: konecta-server
 
-  #   env_file:
-  #     - .env
+    env_file:
+      - .env
 
-  #   networks:
-  #     - konecta-network
+    networks:
+      - konecta-network
 
-  #   depends_on:
-  #     - db
+    depends_on:
+      - db
 
-  # client:
-  #   build:
-  #     context: ./client
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   ports:
-  #     - "80:80"
-  #   container_name: konecta-client
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    container_name: konecta-client
 
-  #   env_file:
-  #     - .env
+    env_file:
+      - .env
 
-  #   networks:
-  #     - konecta-network
+    networks:
+      - konecta-network
 
-  #   depends_on:
-  #     - server
+    depends_on:
+      - server
 
 networks:
   konecta-network:

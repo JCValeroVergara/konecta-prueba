@@ -109,7 +109,14 @@ export const ListaSolicitudes = () => {
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{solicitud.DESCRIPCION}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{solicitud.RESUMEN}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{solicitud.Empleado.NOMBRE}</td>
-                                    { user?.ROL === 'Empleado' ? null : <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'><EliminarButton onClick={()=>handleDelete(solicitud.ID)}/> <EditarButton onClick={()=>handleUpdate(solicitud)}/></td>}
+                                    <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'>
+                                    {user?.ROL !== 'Empleado' ? (
+                                        <>
+                                            <EliminarButton onClick={() => handleDelete(solicitud.ID)} />
+                                            <EditarButton onClick={() => handleUpdate(solicitud)} />
+                                        </>
+                                        ) : null}
+                                    </td>
                                 </tr>
                             ))}
                             </tbody>

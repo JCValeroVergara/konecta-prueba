@@ -20,16 +20,20 @@ export const Navbar = () => {
             </div>
             <div className='flex flex-row'>
                 <div className='flex justify-center items-center'>
-                    <NavLink to='/empleados' className='mx-4'>Empleados</NavLink>
+                    <NavLink to='/empleados' className={({ isActive }) => `mx-4 font-semibold text-xl ${isActive ? 'active' : ''}`}>Empleados</NavLink>
                 </div>
                 <div className='flex justify-center items-center'>
-                    <NavLink to='/solicitudes' className='mx-4'>Solicitudes</NavLink>
+                    <NavLink to='/solicitudes' className={({ isActive }) => `mx-4 font-semibold text-xl ${isActive ? 'active' : ''}`}>Solicitudes</NavLink>
                 </div>
                 <div className='flex justify-center items-center'>
-                    <NavLink to='/usuarios' className='mx-4'>Usuarios</NavLink>
+                    {user?.ROL === 'Empleado' ? (
+                        <span className='mx-4 font-semibold text-xl text-gray-400 cursor-not-allowed'>Usuarios</span>
+                    ) : (
+                        <NavLink to='/usuarios' className={({ isActive }) => `mx-4 font-semibold text-xl ${isActive ? 'active' : ''}`}>Usuarios</NavLink>
+                    )}
                 </div>
                 <div className='flex items-center'>
-                    <p className='mr-4'>{user?.name}</p>
+                    <p className='mr-4 font-semibold text-xl'>{user?.name}</p>
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             </div>

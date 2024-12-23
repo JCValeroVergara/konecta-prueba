@@ -114,7 +114,14 @@ export const ListaEmpleados = () => {
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{empleado.NOMBRE}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{formatDate(empleado.FECHA_INGRESO)}</td>
                                     <td className='px-4 py-2 text-2xl font-normal border border-gray-300'>{empleado.SALARIO}</td>
-                                    { user?.ROL === 'Empleado' ? null : <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'><EliminarButton onClick={()=>handleDelete(empleado.ID)}/> <EditarButton onClick={()=>handleUpdate(empleado)}/></td>}
+                                    <td className='px-4 py-2 text-2xl font-normal border border-gray-300 text-center'>
+                                    {user?.ROL !== 'Empleado' ? (
+                                        <>
+                                            <EliminarButton onClick={() => handleDelete(empleado.ID)} />
+                                            <EditarButton onClick={() => handleUpdate(empleado)} />
+                                        </>
+                                        ) : null}
+                                    </td>
                                 </tr>
                             ))}
                             </tbody>

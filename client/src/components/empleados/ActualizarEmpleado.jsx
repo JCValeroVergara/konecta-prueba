@@ -6,7 +6,6 @@ import { useForm, useUpdate } from '../../hooks';
 
 export const ActualizarEmpleado = ({ empleado, onClose }) => {
     const { token } = useContext(AuthContext);
-    console.log(empleado);
 
     const { formState, onInputChange, onResetForm } = useForm({
         NOMBRE: empleado?.NOMBRE || '',

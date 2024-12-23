@@ -7,3 +7,5 @@ export const UsuariosPage = () => {
         </>
     );
 };
+
+export default UsuariosPage;

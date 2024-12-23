@@ -7,3 +7,5 @@ export const SolicitudesPage = () => {
         </>
     );
 };
+
+export default SolicitudesPage;

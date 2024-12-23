@@ -7,7 +7,6 @@ import { allEmpleadosFetch } from '../../helpers';
 export const ActualizarSolicitud = ({ solicitud, onClose }) => {
     const { token } = useContext(AuthContext);
     const [empleadosData, setEmpleadosData] = useState([]);
-    console.log(solicitud);
 
     const { formState, onInputChange, onResetForm } = useForm({
         CODIGO: solicitud?.CODIGO || '',
